@@ -4,14 +4,22 @@
 <head>
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
+
+
     <style>
 
+    .ss{
+        font-family: 'Lobster', cursive;
+    }
         .border1{
             border:0.5px solid #ccc;
             padding :10px;
             margin: 10px;
             border-radius: 10px 10px;
-
+            height: 338px;
+            background-color: rgba(20, 149, 237, 0.11);
         }
         .mainContainer{
             padding-top: 50px;
@@ -42,6 +50,14 @@
             margin-left:2px;
             font-size: 15px;
         }
+    .df{
+        position: absolute;
+        left: 261px;
+    }
+    .as{
+        font-family: 'Old Standard TT', serif;
+
+    }
 
     </style>
 
@@ -56,12 +72,12 @@
 
 
     <div class="container textContainer">
-        <div><h1>Online Exam Portal</h1></div>
-        <div class="col-md-6 border1 " style="background-color: rgb(245, 245, 245);">
+        <div><h1 class="text-center ss">Online Exam Portal</h1></div>
+        <div class="col-md-6 border1 " >
 
             <!--  <div class="col-md-6" > -->
             <!-- PAGE HEADER -->
-            <div class="page-header"><h1> Login</h1></div>
+            <div class="page-header"><h1 class="text-center as"> Login</h1></div>
 
             <!-- =================================================================== -->
             <!-- FORM ============================================================== -->
@@ -73,7 +89,7 @@
 
                 <!-- NAME -->
                 <div class="form-group">
-                    <label>Name*</label>
+                    <label>Name</label>
                     <input type="text" name="name" class="form-control" placeholder="Name" required>
 
 
@@ -88,7 +104,7 @@
                 </div>
 
                     <!--  Submit Button -->
-                    <button type="submit" class="btn btn-primary">LOGIN</button>
+                    <button type="submit" class="btn btn-success df">LOGIN</button>
 
             </form>
         </div>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <style>
         div#test{ border:#000 1px solid; padding:10px 40px 40px 40px; }
+        #timer {
+            float: right;
+        }
     </style>
     <script>
         var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
@@ -51,32 +54,28 @@
         }
         window.addEventListener("load", renderQuestion, false);
 
-        document.getElementById('timer').innerHTML =
-            03 + ":" + 00;
-        startTimer();
 
-        function startTimer() {
-            var presentTime = document.getElementById('timer').innerHTML;
-            var timeArray = presentTime.split(/[:]+/);
-            var m = timeArray[0];
-            var s = checkSecond((timeArray[1] - 1));
-            if(s==59){m=m-1}
-            //if(m<0){alert('timer completed')}
 
-            document.getElementById('timer').innerHTML =
-                m + ":" + s;
-            setTimeout(startTimer, 1000);
-        }
+        var count=30;
 
-        function checkSecond(sec) {
-            if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-            if (sec < 0) {sec = "59"};
-            return sec;
+        var counter=setInterval(timer,1000); //1000 will  run it every 1 second
+        function timer()
+        {
+            count=count-1;
+            if (count < 0)
+            {
+                alert("done");
+                clearInterval(counter);
+                return;
+            }
+
+            document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
         }
     </script>
 </head>
 <body>
-<div>Time left = <span id="timer"></span></div>
+<span id="timer"></span>
+
 <h2 id="test_status"></h2>
 <div id="test"></div>
 </body>

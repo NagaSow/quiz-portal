@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+<form name="form1">
+    <select name="menu1" id="menu1">
+        <option value="DOTNET.html">.net</option>
+        <option value="testing.html">Testing</option>
+        <option value="java.html">Java</option>
+
+    </select>
+    <script type="text/javascript">
+        var urlmenu = document.getElementById( 'menu1' );
+        urlmenu.onchange = function() {
+            window.open(  this.options[ this.selectedIndex ].value );
+        };
+    </script>
+</body>
+</html>

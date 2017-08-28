@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body     { padding-top:30px;
+
+        }
+        .backgroundImg{
+            /* width: 500px;
+             height:400px;
+             border:1px solid;
+             margin:10px auto;*/
+            background-image: url("images/banner3.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            /*background-position: left bottom center;*/
+            background-position: center;
+        }
+        .border1{
+            border:0.5px solid #ccc;
+            padding :10px;
+            margin: 10px;
+
+
+        }
+        .mainContainer{
+            padding-top: 50px;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-bottom: 50px;
+            margin-top: 20px;
+            margin-left: 20px;
+
+        }
+        .textContainer{
+            padding-left: 25%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 200px;
+        }
+        .page-header{
+            padding-top:55px;}
+        .text2 {position: absolute;
+            top: 40px;
+            left:135px!important;
+            color: #8dc343;
+        }
+
+        .dainik { color: #ffa200;
+            font-family: Verdana, Geneva, sans-serif;
+            margin-left:2px;
+            font-size: 15px;
+        }
+
+    </style>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+
+</head>
+<body ng-app="validationApp" ng-controller="mainController" class="backgroundImg">
+<div class="container-fluid">
+
+
+    <div class="container textContainer">
+        <div class="col-md-6 border1 " style="background-color: rgb(245, 245, 245);">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"><img class="img-responsive img89" src="images/lgpin.png"></a>
+                <p class="text2"><span class="dainik"><b> Dainik Fresh </b></span><br>Get Fresh Eat Healthy</p>
+            </div>
+            <!--  <div class="col-md-6" > -->
+            <!-- PAGE HEADER -->
+            <div class="page-header"><h1> Sign Up on Dainik Fresh</h1></div>
+
+            <!-- =================================================================== -->
+            <!-- FORM ============================================================== -->
+            <!-- =================================================================== -->
+
+            <!-- pass in the variable if our form is valid or invalid -->
+            <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+
+                <!-- NAME -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+                    <label>Name*</label>
+                    <input type="text" name="name" class="form-control" ng-model="user.name" placeholder="Name" required>
+                    <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Your name is required.</p>
+                </div>
+
+                <!-- Mobile -->
+                <div class="form-group" ng-class="{'has-error': userForm.phone.$error.number}">
+                    <label>Phone Number *</label>
+                    <!-- <div class="col-sm-9">-->
+                    <input type="text" class="form-control" ng-minlength="10"  ng-maxlength="10" id="inputPhone" name="phone" placeholder="Phone" ng-model="user.phone"
+                           ng-required="true">
+                    <!-- <span class="help-block"
+                           ng-show="userForm.phone.$error.required || userForm.phone.$error.number">
+                                    Valid phone number is required
+                     </span>-->
+                    <span class="help-block"
+                          ng-show="((userForm.phone.$error.minlength ||userForm.phone.$error.maxlength) && userForm.phone.$dirty) ">
+                           phone number should be 10 digits
+            </span>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                    <label>Email(optional)</label>
+                    <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="Email(optional)">
+                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                </div>
+                <!--  PASSWORD -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="3" ng-maxlength="8" placeholder="Password">
+                    <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="userForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+                </div>
+                <!--  CONFIRM PASSWORD -->
+                <div class="form-group" ng-class="{'has-error':userForm.password_c.$invalid && !userForm.password_c.$pristine}">
+                    <label>Confirm Password</label>
+                    <input type="password" name="password_c" class="form-control" ng-model="user.password_c" placeholder="Confirm Password" valid-password_c="userForm.password" required />
+
+                    <!--<p ng-show="userForm.password!==userForm.password_c" class="help-block">Password mismatch</p>-->
+                    <p ng-show=" userForm.password_c.$viewValue != '' && (userForm.password.$viewValue != userForm.password_c.$viewValue)" class="help-block">Fields do not match!</p>
+                    </p>
+                    <!--  Submit Button -->
+                    <button type="submit" class="btn btn-primary">SIGN UP</button>
+
+            </form>
+        </div>
+        <div class="col-md-6 pull-right"  style="border-left: .5px solid #ccc">
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    // app.js
+    // create angular app
+    var validationApp = angular.module('validationApp', []);
+
+    // create angular controller
+    validationApp.controller('mainController', function($scope) {
+
+        // function to submit the form after all validation has occurred
+        $scope.submitForm = function(isValid) {
+
+            // check to make sure the form is completely valid
+            if (isValid) {
+                alert('Sign Up successfully');
+            }
+
+        };
+
+    });
+</script>
+</body>
+</html>
